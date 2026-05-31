@@ -149,5 +149,15 @@ it tolerates ForeFlight version differences) and is forgiving of missing
 From/To, quoted remarks, semicolon-delimited crew fields, and `TRUE` flags.
 Export reproduces the same structure for clean round-tripping.
 
+## Data & licensing
+
+The bundled `fixes.csv` combines three sources: FAA NASR data (US public domain),
+OpenAIP reporting points (CC BY-NC-SA 4.0 — attribution and ShareAlike required,
+non-commercial use only), and open flightmaps designated points (OFMA General
+Users' License — attribution required). Because the bundle includes OpenAIP data,
+the dataset as a whole is CC BY-NC-SA: non-commercial use, with attribution, and
+any redistribution must keep the same license. See
+`backend/datasets/bundled/ATTRIBUTION.md` for the full source-by-source breakdown.
+
 > Currency calculations are an aid, not legal authority — always verify against
 > the regulations (14 CFR Part 61 / CARs Part 401).

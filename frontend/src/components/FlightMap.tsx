@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip } from "react-leaflet";
+import { AttributionControl, CircleMarker, MapContainer, Polyline, TileLayer, Tooltip } from "react-leaflet";
 import type { LatLngBoundsExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { api } from "../api/client";
@@ -70,6 +70,10 @@ export default function FlightMap({ flight }: { flight: Flight }) {
         className="map-box"
         attributionControl={false}
       >
+        <AttributionControl
+          position="bottomright"
+          prefix={'Fixes: FAA · OpenAIP (CC BY-NC-SA) · open flightmaps'}
+        />
         <TileLayer key={theme} url={TILES[theme]} />
         <Polyline
           positions={line}
