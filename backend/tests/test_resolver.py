@@ -59,3 +59,20 @@ def test_resolver_disambiguates_by_proximity(db_session):
     db_session.commit()
     res = resolve_idents(db_session, ["KEMT", "SLI", "KMYF"])
     assert res["SLI"]["lat"] == 33.783  # Seal Beach, not Colombia
+
+
+def test_resolver_picks_region_matching_airports(db_session):
+    """A 5-letter fix name reused in two regions resolves to the one near the
+    flight's airports (Europe here), proving multi-region data is safe."""
+    from app.coords.resolver import resolve_idents
+    from app.models import Waypoint
+
+    # European flight anchors.
+    db_session.add(Waypoint(ident="LOWW", type="airport", lat=48.110, lon=16.570, source="t"))
+    db_session.add(Waypoint(ident="EDDM", type="airport", lat=48.354, lon=11.786, source="t"))
+    # Same fix name in Europe (near anchors) and the US (far).
+    db_session.add(Waypoint(ident="ABETI", type="fix", lat=47.9, lon=14.0, source="ofmx"))
+    db_session.add(Waypoint(ident="ABETI", type="fix", lat=39.0, lon=-95.0, source="faa-nasr"))
+    db_session.commit()
+    res = resolve_idents(db_session, ["LOWW", "ABETI", "EDDM"])
+    assert res["ABETI"]["lat"] == 47.9  # European candidate, not US
