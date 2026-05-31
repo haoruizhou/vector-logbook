@@ -1,0 +1,19 @@
+services:
+  logbook:
+    build: .
+    image: vector-logbook
+    container_name: vector-logbook
+    ports:
+      - "8000:8000"
+    volumes:
+      - logbook-data:/data
+    environment:
+      # Override coordinate refresh cadence (days) or tile sources if desired.
+      LOGBOOK_REFRESH_INTERVAL_DAYS: "7"
+      # Slim FAA fixes CSV published by the update-fixes workflow (release asset).
+      # Uncomment and point at your repo so enroute fixes auto-update:
+      # LOGBOOK_FIXES_URL: "https://github.com/<owner>/<repo>/releases/latest/download/fixes.csv"
+    restart: unless-stopped
+
+volumes:
+  logbook-data:

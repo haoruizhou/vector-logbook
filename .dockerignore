@@ -1,0 +1,15 @@
+**/node_modules
+**/.venv
+**/__pycache__
+**/dist
+**/.pytest_cache
+**/.ruff_cache
+backend/data
+backend/datasets/cache
+*.db
+*.sqlite*
+docs
+.git
+.github
+sample
+**/.DS_Store

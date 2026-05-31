@@ -1,0 +1,130 @@
+ForeFlight Logbook Import,This row is required for importing into ForeFlight. Do not delete or modify.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Aircraft Table,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+AircraftID,TypeCode,Year,Make,Model,GearType,EngineType,equipType (FAA),aircraftClass (FAA),complexAircraft (FAA),taa (FAA),highPerformance (FAA),pressurized (FAA),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N50150,C150,,Cessna,150,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N3038S,C150,,Cessna,150,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N2918S,C150,,Cessna,150,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N738NX,C172,,Cessna,172,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N4637G,C172,,Cessna,172N,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N9897Q,C172,,Cessna,172M,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N7496X,C172,,Cessna,172B,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N2446Y,C172,,Cessna,172D,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N80643,C172,,Cessna,172M,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N355AA,C152,,Cessna,152,fixed_tricycle,Piston,,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N12345,C172,,Cessna,152,fixed_tricycle,Piston,batd,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N74646,AA5,,GRUMMAN AMERICAN,AA5-B,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N472RV,RV9,,Van's Aircraft,RV9,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N12345,,,,,,,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+N91JV,P28A,,Piper Aircraft,PA-28-151 Cherokee Warrior,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CGPAS,C172,,Cessna Aircraft,172M Skyhawk,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CFSXV,C150,,Cessna,150F,fixed_tricycle,Piston,,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CGGUI,C150,,Cessna Aircraft,150M Commuter,fixed_tricycle,Piston,aircraft,airplane_single_engine_land,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Flights Table , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,Deprecated: Do not edit manually,Deprecated: Do not edit manually,Deprecated: Do not edit manually,Deprecated: Do not edit manually,Deprecated: Do not edit manually
+Date,AircraftID,From,To,Route,TimeOut,TimeOff,TimeOn,TimeIn,OnDuty,OffDuty,TotalTime,PIC,SIC,Night,Solo,CrossCountry,PICUS,MultiPilot,IFR,Examiner,NVG,NVG Ops,Distance,ActualInstrument,SimulatedInstrument,HobbsStart,HobbsEnd,TachStart,TachEnd,Holds,Approach1,Approach2,Approach3,Approach4,Approach5,Approach6,DualGiven,DualReceived,SimulatedFlight,GroundTraining,GroundTrainingGiven,InstructorName,InstructorComments,Person1,Person2,Person3,Person4,Person5,Person6,PilotComments,Flight Review (FAA),IPC (FAA),Checkride (FAA),FAA 61.58 (FAA),NVG Proficiency (FAA),DayTakeoffs,DayLandingsFullStop,NightTakeoffs,NightLandingsFullStop,AllLandings
+,CFSXV,CYXU,CYXU,CYXU,,,,,,,0.7,0.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""crosswind landing, one go around""",,,,,,2,2,,,2
+,N91JV,KMYF,KEMT,,,,,,,,1.5,1.5,,0.2,,,,,,,,,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,1
+,N91JV,KEMT,KMYF,SLI OCN VPSMS,,,,,,,1.6,1.6,,,,1.6,,,,,,,95.00,,1.1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,1
+,N91JV,KEMT,KEMT,,,,,,,,0.8,0.8,,,0.8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,3,,,3
+,CGPAS,CYXU,CYXU,,,,,,,,1.0,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0.00,,0.7,0.00,0.00,0.00,0.00,0,,,,,,,0.0,1.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,CGGUI,CYXU,CYXU,,23:37,23:58,00:46,01:01,,,1.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,1.3,0.0,0.0,,,,,,,,,,,,,,,,2,2,0,0,2
+,N91JV,KEMT,KEMT,,,,,,,,1.5,1.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,1.5,0.0,0.0,,,,,,,,,,,TRUE,,,,,1,1,0,0,1
+,N472RV,KSBA,KBFL,,,,,,,,2.0,2.0,0.0,0.0,0.0,2.0,,,,,0.0,0,71.30,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N472RV,KBFL,KSBA,,23:21,23:36,00:15,00:30,,,1.2,1.2,0.0,0.0,0.0,1.2,,,,,0.0,0,71.40,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N74646,KSBP,KSBA,,,,,,,,1.5,1.5,0.0,0.0,0.0,1.5,,,,,0.0,0,62.40,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N74646,KSBA,KSBP,,,,,,,,1.5,1.5,0.0,0.0,0.0,1.5,,,,,0.0,0,62.30,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N80643,KSBA,KSBA,,,21:50,21:50,,,,0.6,0.6,0.0,0.0,0.0,0.0,,,,,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N80643,KSBA,KSBA,GVO,,,,,,,1.9,1.9,0.0,0.0,0.0,0.0,,,,,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,3,3,0,0,3
+,N80643,KSBA,KSBA,,05:36,05:50,06:20,06:35,,,1.0,1.0,0.0,1.0,0.0,0.0,,,,,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,0,0,3,3,3
+,N80643,KSBP,KSBA,,00:31,00:38,01:48,01:55,,,1.6,0.0,0.0,0.0,0.0,1.6,,,,,0.0,0,62.80,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N80643,KSBA,KSBP,,19:27,19:39,20:26,20:41,,,1.4,1.4,0.0,0.0,0.0,1.4,,,,,0.0,0,62.20,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N74646,KSBA,KSBA,,,,,,,,0.4,0.4,0.0,0.0,0.0,0.0,,,,,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,"""did not end up taking off due to sudden IFR weather """,,,,,,0,0,0,0,0
+,N74646,KSBP,KSBA,GVO,00:23,00:43,01:23,01:38,,,1.4,1.4,0.0,0.0,0.0,1.4,,,,,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N74646,KSBA,KSBP,GVO,21:04,21:33,22:08,22:23,,,1.5,1.5,0.0,0.0,0.0,1.5,,,,,0.0,0,0.00,0.0,0.0,0.00,0.00,0.00,0.00,0,,,,,,,0.0,0.0,0.0,0.0,,,,,,,,,,,,,,,,1,1,0,0,1
+,N74646,KIZA,KSBA,,,,,,,,0.8,0.8,,0.8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""low ceiling""",,,,,,,,1,1,1
+,N12345,KSBA,,,,,,,,,,,,,,,,,,,,,,,2.1,,,,,,,,,,,,,2.1,2.1,,,,,,,,,,,"""radial intercept, ILS""",,,,,,,,,,
+,N74646,KSBA,KIZA,,,,,,,,0.7,0.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,1
+,N80643,KSBP,KSBA,,,,,,,,1.7,1.7,,0.2,,1.7,,,,,,,,,1.5,,,,,,,,,,,,,,,,,,,,,,,,,"""safety pilot: """,,,,,,1,,,1,2
+,N80643,KSBA,KSBP,,,,,,,,1.3,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""safety pilot for """,,,,,,,,,,
+,N12345,KSBA,,,,,,,,,,,,,,,,,,,,,,,2.0,,,,,,,,,,,,,2.0,2.0,,,,,,,,,,,"""fly to a fix, VOR radial""",,,,,,,,,,
+,N74646,KSBA,KSBA,,,,,,,,1.1,1.1,,0.3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""fly with attitude indicator""",,,,,,1,1,,,1
+,N80643,KSBA,KSBA,,,,,,,,0.9,0.9,,0.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""night currency, pattern; steep turns, stall""",,,,,,,,3,3,3
+,N12345,KSBA,,,,,,,,,,,,,,,,,,,,,,2.0,2.0,,,,,,,,,,,,,,2.0,,,,,,,,,,,"""constant rate climb, descend, constant speed""",,,,,,,,,,
+,N12345,KSBA,,,,,,,,,,,,,,,,,,,,,,2.0,2.0,,,,,,,,,,,,,,2.0,,,,,,,,,,,"""attitude indicator, orientation, radial intercept""",,,,,,,,,,
+,N80643,KSBP,KSBA,,,,,,,,1.0,1.0,,,,1.0,,,,,,,,,0.9,,,,,,,,,,,,,,,,,,,,,,,,,"""safety pilot: """,,,,,,1,1,,,1
+,N80643,KSBA,KSBP,,,,,,,,1.0,0.8,,,,0.8,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""safety pilot for """,,,,,,,,,,
+,N80643,KSBA,KSBA,,,,,,,,2.0,2.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""ground reference, VOR, attitude indicator""",,,,,,1,1,,,1
+,N80643,KSBA,KSBA,,,,,,,,1.2,1.2,,0.4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""steep turn, stall recovery""",,,,,,,1,,1,2
+,N12345,KSBA,,,,,,,,,,,,,,,,,,,,,,1.3,1.3,,,,,,,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,
+,N472RV,KSBA,KIZA,,,,,,,,0.6,0.6,,0.6,,0.6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""night flight, right landing gear excess brake""",,,,,,,,1,1,1
+,N472RV,KEMT,KSBA,,,,,,,,1.3,1.3,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""cloudy day, xc""",,,,,,1,1,,,1
+,N472RV,KEMT,KEMT,,,,,,,,0.4,0.4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""checking weather""",,,,,,,,,,
+,N472RV,KSNA,KEMT,,,,,,,,0.4,0.4,,0.4,,0.4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc part of the trip""",,,,,,,,1,1,1
+,N472RV,KEMT,KSNA,,,,,,,,0.5,0.5,,,,0.5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc part of the trip""",,,,,,1,1,,,1
+,N472RV,KSBP,KEMT,,,,,,,,1.7,1.7,,1.7,,1.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc, night""",,,,,,,,1,1,1
+,N472RV,KSBA,KSBP,,,,,,,,0.9,0.9,,0.9,,0.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc, night""",,,,,,,,1,1,1
+,N472RV,KEMT,KSBA,,,,,,,,1.2,1.2,,,,1.2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc using AP""",,,,,,1,1,,,1
+,N472RV,L35,KEMT,,,,,,,,1.0,1.0,,1.0,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""night xc""",,,,,,,,1,1,1
+,N472RV,KSBA,L35,,,,,,,,1.7,1.7,,,,1.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc""",,,,,,1,1,,,1
+,N472RV,KSBA,KSBA,KLPC,,,,,,,1.6,1.6,,,,1.6,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""SBFC checkout RV""",,,,,,5,5,,,5
+,N74646,KVIS,KSBA,,,,,,,,2.5,2.5,,0.5,,2.5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""VOR nav, Kings Canyon, Sequoia """,,,,,,1,,,1,1
+,N74646,KMPI,KVIS,,,,,,,,1.0,1.0,,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""Yosemite mountian tour""",,,,,,1,1,,,1
+,N74646,KSBA,KMPI,,,,,,,,3.0,3.0,,0.7,,3.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""flying over mountain""",,,,,,,1,1,,1
+,N74646,KSBA,KSBA,,,,,,,,0.5,0.5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,,,1
+,N74646,KSBA,KSBA,,,,,,,,1.6,1.6,,,,,,,,,,,,,0.1,,,,,,,,,,,,,,,,,,,,,,,,,"""Tiger checkout SBFC""",,,,,,7,7,,,7
+,N80643,KSBA,KSBA,,,,,,,,1.1,1.1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""turbulent""",,,,,,1,1,,,1
+,N80643,KEMT,KSBA,,,,,,,,1.3,1.3,,1.3,,1.3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc""",,,,,,,,1,1,1
+,N80643,KSBA,KEMT,,,,,,,,1.7,1.7,,0.2,,1.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc""",,,,,,1,,,1,1
+,N80643,KSBA,KSBA,,,,,,,,0.5,0.5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""battery failed on ground after taxi""",,,,,,,,,,
+,N80643,KSBA,KSBA,,,,,,,,1.7,1.7,,1.7,,,,,,,,,,,0.2,,,,,,,,,,,,,1.7,,,,,,,,,,,,"""SBFC C172 check steep turn, slow flight, GPS+VOR navigation, turn, take off, landing""",,,,,,,,3,3,3
+,N2446Y,KAJO,KAJO,KCRQ KMYF,,,,,,,2.9,2.7,,,,2.9,,,,,,,137.70,,1.6,,,,,,,,,,,,,,,,,,,,,,,,,"""Safety Pilot , Inst app. KMYF; time correction""",,,,,,2,1,,,1
+,N9897Q,KSBA,KSBA,L52 KIZA,,,,,,,1.9,1.9,,,,1.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""xc to Oceano """,,,,,,3,3,,,3
+,N9897Q,KSBA,KSBA,L52,,,,,,,2.0,2.0,,,,2.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""non-towered, gust wind landing""",,,,,,2,2,,,2
+,N7496X,KSBA,KSBA,,,,,,,,1.0,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""steep turns, stall, sequence landings (Above All currency)""",,,,,,4,4,,,4
+,N9897Q,KSBA,KSBA,KVNY,,,,,,,3.4,3.4,,1.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""KVNY LA VFR Corridor, Costal, Hollywood""",,,,,,2,1,,1,2
+,N2918S,KSBA,KSBA,,,,,,,,0.5,0.5,,0.5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""night currency""",,,,,,,,3,3,3
+,N2918S,KSBA,KSBA,,,,,,,,0.8,0.8,,0.2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""First flight with passenger """,,,,,,1,,,1,1
+,N9897Q,KSBA,KSBA,,,,,,,,1.7,1.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""PPL Practical Test passed""",,,TRUE,,,5,5,,,5
+,N9897Q,KSBA,,,,,,,,,0.9,0.9,,,0.9,,,,,,,,,,,,,,,,,,,,,,,0.9,,,,,,,,,,,,"""pattern""",,,,,,6,6,,,6
+,N9897Q,KSBA,KSBA,,,,,,,,1.1,,,,,,,,,,,,,,,,,,,,,,,,,,,1.1,,,,,,,,,,,,"""Pattern, no flap forward slip, short field/soft field t/o landing""",,,,,,10,10,,,10
+,N9897Q,KSBA,KSBA,,,,,,,,1.4,,,,,,,,,,,,,,0.1,,,,,,,,,,,,,1.4,,,,,,,,,,,,"""Final Phase Check""",,,,,,4,4,,,4
+,N9897Q,KSBA,KSBA,,,,,,,,2.4,,,,,,,,,,,,,,,,,,,,,,,,,,,2.4,,,,,,,,,,,,"""short field t/o and climb, power on/off stalls, slow flights, steep turns, pattern, short field landing, no flap, fwd slip, VOR navigation""",,,,,,9,9,,,9
+,N9897Q,KSBA,KSBA,,,,,,,,0.3,0.3,,,0.3,,,,,,,,,,,,,,,,,,,,,,,0.3,,,,,,,,,,,,"""two pattern works""",,,,,,2,2,,,2
+,N9897Q,KSBA,KSBA,,,,,,,,1.0,,,,,,,,,,,,,,0.2,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""checkride prep, all PPL maneuvers, pattern short field takeoff landings""",,,,,,2,2,,,2
+,N4637G,KSBA,KSBA,,,,,,,,1.3,1.3,,,1.3,,,,,,,,,,,,,,,,,,,,,,,1.3,,,,,,,,,,,,"""solo pattern, steep turn""",,,,,,6,6,,,6
+,N4637G,KSBA,KSBA,,,,,,,,1.5,,,,,,,,,,,,,,,,,,,,,,,,,,,1.5,,,,,,,,,,,,"""steep turns pattern + soft field; takeoff and landings checkride prep""",,,,,,3,3,,,3
+,N9897Q,KSBA,KSBA,,,,,,,,0.7,0.7,,,0.7,,,,,,,,,,,,,,,,,,,,,,,0.7,,,,,,,,,,,,"""solo pattern, cross-wind""",,,,,,6,6,,,6
+,N9897Q,KSBA,,,,,,,,,0.5,,,,0.5,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""pattern x-wind, pre-solo ride""",,,,,,2,2,,,2
+,N9897Q,KSBA,KSBA,,,,,,,,1.5,,,,,,,,,,,,,,,,,,,,,,,,,,,1.5,,,,,,,,,,,,"""checkride prep. short field t/o, power on/off stalls, slow flights, steep turns, VOR usage, pattern work, soft field landing t/o""",,,,,,6,6,,,6
+,N9897Q,KSBA,KSBA,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,,,,1.3,,,,,,,,,,,,"""pattern, normal/no flaps forward slip soft field t/o landing""",,,,,,12,12,,,12
+,N9897Q,KSBA,KSBA,,,,,,,,1.5,,,0.3,,,,,,,,,,,,,,,,,,,,,,,,1.5,,,,,,,,,,,,"""short field t/o landing, pattern work, 3 night t/o landing""",,,,,,8,8,3,3,11
+,N4637G,KSBA,KSBA,,,,,,,,1.2,,,,,,,,,,,,,,,,,,,,,,,,,,,1.2,,,,,,,,,,,,"""east practice area, CE-172N, slow flying, power off/on stalls, steep turns emergency procedures, normal no flap landings""",,,,,,1,1,,,1
+,N3038S,KSBA,KSBA,KSBP,,,,,,,1.9,1.9,,,1.9,1.9,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""solo xc""",,,,,,2,2,,,2
+,N3038S,KSBA,KSBA,,,,,,,,1.0,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""night pattern work, full stop landings, soft field t/o landings, short field""",,,,,,,,8,8,8
+,N3038S,KSBA,KSBA,KPRB KIZA,,,,,,,3.2,3.2,,,3.2,3.2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""second solo x-country""",,,,,,3,3,,,3
+,N738NX,KSBA,KSBA,,,,,,,,1.9,,,,,,,,,,,,,,1.5,,,,,,,,,,,,,1.9,,,,,,,,,,,,"""hood work, GPS RWY  & GPS RWY 25 @KSBA published missed @ KIZA VFR cond""",,,,,,1,1,,,1
+,N355AA,KSBA,KSBA,KSBP,,,,,,,1.7,1.7,,,1.7,1.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""first solo cross country""",,,,,,2,2,,,2
+,N355AA,KSBA,KSBA,KIZA KSMX,,,,,,,1.9,,,,,,,,,,,,,,,,,,,,,,,,,,,1.9,,,,,,,,,,,,"""x-country phase check""",,,,,,3,3,,,3
+,N3038S,KSBA,KSBA,KVNY,,,,,,,2.4,,,2.4,,2.4,,,,,,,,,1.5,,,,,,,,,,,,,2.4,,,,,,,,,,,,"""night x-country via dead recokining, VOR usage""",,,,,,,,2,2,2
+,N3038S,KSBA,KSBA,KPRB KIZA,,,,,,,3.1,,,,,3.1,,,,,,,,,,,,,,,,,,,,,,3.1,,,,,,,,,,,,"""second dual x-country""",,,,,,3,3,,,3
+,N355AA,KSBA,KSBA,,,,,,,,0.6,,,,0.6,,,,,,,,,,,,,,,,,,,,,,,0.6,,,,,,,,,,,,"""2nd supervised solo, pre solo ride, x-wind takeoffs & landings""",,,,,,3,3,,,3
+,N355AA,KSBA,KSBA,,,,,,,,0.7,0.7,,,0.7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""solo pattern work, x-wind take off & landings""",,,,,,5,5,,,5
+,N3038S,KSBA,KSBA,KSBP,,,,,,,2.4,,,,,2.4,,,,,,,,,,,,,,,,,,,,,,2.4,,,,,,,,,,,,"""first dual cross country, VOR usage, pilotage, dead reckoning, wind ",,,,,,2,2,,,2
+,N355AA,KSBA,KSBA,KIZA,,,,,,,1.6,,,,,,,,,,,,,,,,,,,,,,,,,,,1.6,,,,,,,,,,,,"""non-towered airport operation""",,,,,,6,6,,,6
+,N355AA,KSBA,KSBA,,,,,,,,0.8,,,,0.8,,,,,,,,,,,,,,,,,,,,,,,0.8,,,,,,,,,,,,"""pre-solo ride""",,,,,,2,2,,,2
+,N355AA,KSBA,KSBA,,,,,,,,0.4,0.4,,,0.4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"""first solo pattern work""",,,,,,1,1,,,1
+,N50150,KSBA,KSBA,,,,,,,,1.2,,,,,,,,,,,,,,,,,,,,,,,,,,,1.2,,,,,,,,,,,,"""x-wind pattern work on rwy 15 wind ",,,,,,6,6,,,6
+,N355AA,KSBA,KSBA,,,,,,,,1.2,,,,,,,,,,,,,,,,,,,,,,,,,,,1.2,,,,,,,,,,,,"""power on & off stalls, steep turns, stalls in turns, cross wind landings, go around""",,,,,,3,3,,,3
+,N355AA,KSBA,KSBA,,,,,,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""pattern work normal landings""",,,,,,6,6,,,6
+,N355AA,KSBA,KSBA,,,,,,,,1.7,,,,,,,,,,,,,,,,,,,,,,,,,,,1.7,,,,,,,,,,,,"""power on/off stall. slow flight, steep turns, turns around a point, emergency procedures""",,,,,,3,3,,,3
+,N355AA,KSBA,KSBA,,,,,,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""slips to land & go-around, pattern""",,,,,,7,7,,,7
+,N355AA,KSBA,KSBA,,,,,,,,1.2,,,,,,,,,,,,,,,,,,,,,,,,,,,1.2,,,,,,,,,,,,"""pattern work, normal landings & take off, first landing ever!""",,,,,,6,5,,,5
+,N50150,KSBA,KSBA,,,,,,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""pattern work, normal and x-wind take off and landing""",,,,,,7,7,,,7
+,N355AA,KSBA,KSBA,,,,,,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""pattern work on rwy 33 wind ",,,,,,5,5,,,5
+,N355AA,KSBA,KSBA,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,,,,1.3,,,,,,,,,,,,"""emergency procedures, sim engine fire, sim engine faiure""",,,,,,1,,,,
+,N355AA,KSBA,KSBA,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,,,,1.3,,,,,,,,,,,,"""steep turns, power on/off stall, normal takeoff, approach, all rdios""",,,,,,1,,,,
+,N355AA,KSBA,KSBA,,,,,,,,1.2,,,,,,,,,,,,,,,,,,,,,,,,,,,1.2,,,,,,,,,,,,"""power on/off stalls, west practice area""",,,,,,1,,,,
+,N355AA,KSBA,KSBA,,,,,,,,1.3,,,,,,,,,,,,,,,,,,,,,,,,,,,1.3,,,,,,,,,,,,,,,,,,1,,,,
+,N2918S,KSBA,KSBA,,,,,,,,1.0,,,,,,,,,,,,,,,,,,,,,,,,,,,1.0,,,,,,,,,,,,"""ground reference maneuvers, turns around a point""",,,,,,1,,,,
+,N3038S,KSBA,KSBA,,,,,,,,1.1,,,,,,,,,,,,,,,,,,,,,,,,,,,1.1,,,,,,,,,,,,"""ground reference maneuvers, turns around a point""",,,,,,1,,,,
