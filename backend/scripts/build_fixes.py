@@ -108,9 +108,13 @@ def _is_region_xml(key: str) -> bool:
     )
 
 
-def _latest_ofmx_cycle(c: httpx.Client) -> str | None:
-    """Highest live/<cycle>/ that actually contains an OFMX region XML."""
+def _latest_ofmx_cycle(c: httpx.Client) -> tuple[str, list[str]] | None:
+    """Highest live/<cycle>/ that contains OFMX region XMLs, with those keys.
+
+    Returns (cycle, region_xml_keys) so the caller reuses this listing instead
+    of re-scanning the same prefix a second time."""
     r = c.get(OFMX_BUCKET + "/", params={"prefix": "live/", "delimiter": "/"})
+    r.raise_for_status()
     root = ElementTree.fromstring(r.text)
     cycles = []
     for p in root.findall("s3:CommonPrefixes/s3:Prefix", _S3_NS):
@@ -118,19 +122,20 @@ def _latest_ofmx_cycle(c: httpx.Client) -> str | None:
         if cyc.isdigit():
             cycles.append(cyc)
     for cyc in sorted(cycles, reverse=True):
-        if any(_is_region_xml(k) for k in _ofmx_list_keys(c, f"live/{cyc}/ofmx/")):
-            return cyc
+        keys = [k for k in _ofmx_list_keys(c, f"live/{cyc}/ofmx/") if _is_region_xml(k)]
+        if keys:
+            return cyc, keys
     return None
 
 
 def fetch_ofmx() -> list[dict]:
     rows: list[dict] = []
     with httpx.Client(timeout=300, follow_redirects=True) as c:
-        cycle = _latest_ofmx_cycle(c)
-        if not cycle:
+        found = _latest_ofmx_cycle(c)
+        if not found:
             log("OFMX: no published cycle found, skipping")
             return rows
-        keys = [k for k in _ofmx_list_keys(c, f"live/{cycle}/ofmx/") if _is_region_xml(k)]
+        cycle, keys = found
         log(f"OFMX: cycle {cycle}, {len(keys)} region files")
         for k in keys:
             try:

@@ -55,7 +55,11 @@ def load_navaids_csv(text: str) -> list[dict]:
 
 
 def load_fixes_csv(text: str) -> list[dict]:
-    """Slim FAA enroute-fix CSV produced by scripts/build_fixes.py."""
+    """Slim merged enroute-fix CSV produced by scripts/build_fixes.py.
+
+    Columns: ident,type,lat,lon,name,country,source. The source tag is
+    faa-nasr | openaip | ofmx; rows from an older file without a source column
+    default to faa-nasr."""
     out: list[dict] = []
     for r in csv.DictReader(io.StringIO(text)):
         try:
@@ -124,11 +128,11 @@ def refresh_base(db) -> dict:
 def refresh_fixes(db) -> dict:
     """Refresh enroute fixes from the slim published CSV, bundled as fallback.
 
-    The heavy FAA NASR download + processing happens once centrally in CI
-    (scripts/build_fixes.py via GitHub Actions), which publishes a small
-    fixes.csv. Each instance just fetches that (set LOGBOOK_FIXES_URL), so no VM
-    ever pulls the ~250 MB subscription. The bundled snapshot in the image is the
-    offline / first-boot fallback.
+    The heavy multi-source build (FAA NASR + OpenAIP + open flightmaps) happens
+    once centrally in CI (scripts/build_fixes.py via GitHub Actions), which
+    publishes a small merged fixes.csv. Each instance just fetches that (set
+    LOGBOOK_FIXES_URL), so no VM ever pulls the large upstream datasets. The
+    bundled snapshot in the image is the offline / first-boot fallback.
     """
     rows: list[dict] = []
     source = "bundled"
