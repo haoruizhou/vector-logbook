@@ -67,7 +67,7 @@ def load_fixes_csv(text: str) -> list[dict]:
                     "lon": float(r["lon"]),
                     "name": r.get("name"),
                     "country": r.get("country"),
-                    "source": "faa-nasr",
+                    "source": (r.get("source") or "").strip() or "faa-nasr",
                 }
             )
         except (ValueError, KeyError):
@@ -143,7 +143,7 @@ def refresh_fixes(db) -> dict:
         if bundled.exists():
             rows = load_fixes_csv(bundled.read_text())
     if rows:
-        _replace_source(db, ["faa-nasr"], rows)
+        _replace_source(db, ["faa-nasr", "openaip", "ofmx"], rows)
     return {"fixes": len(rows), "source": source}
 
 
