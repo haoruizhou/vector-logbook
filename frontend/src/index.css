@@ -691,6 +691,26 @@ table.log tbody tr:hover td:first-child {
 .wp-label::before {
   display: none;
 }
+/* Data attribution: blends into the map, faint muted text with a shadow halo for
+   legibility, brightening on hover. */
+.leaflet-control-attribution {
+  background: transparent !important;
+  color: var(--ink-dim) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.02em;
+  margin: 0 !important;
+  padding: 0 6px 1px 0 !important;
+  opacity: 0.55;
+  text-shadow: 0 1px 2px var(--bg), 0 0 3px var(--bg);
+  transition: opacity 0.15s var(--ease);
+}
+.leaflet-control-attribution:hover {
+  opacity: 0.95;
+}
+.leaflet-control-attribution a {
+  color: var(--ink-dim) !important;
+  text-decoration: none;
+}
 
 /* ============================================================
    Dashboard

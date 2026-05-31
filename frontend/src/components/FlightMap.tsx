@@ -72,7 +72,7 @@ export default function FlightMap({ flight }: { flight: Flight }) {
       >
         <AttributionControl
           position="bottomright"
-          prefix={'Fixes: FAA · OpenAIP (CC BY-NC-SA) · open flightmaps'}
+          prefix={'Data: FAA · OpenAIP (CC BY-NC-SA) · open flightmaps'}
         />
         <TileLayer key={theme} url={TILES[theme]} />
         <Polyline

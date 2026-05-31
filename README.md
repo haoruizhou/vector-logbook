@@ -18,9 +18,10 @@ Light and dark themes (with an auto option that follows your system).
 - Lossless ForeFlight CSV import/export (every column preserved; re-imports dedupe)
 - Full CRUD for flights and aircraft, persisted in SQLite
 - Per-flight map with great-circle distance, or multi-leg route polyline
-- Coordinate resolution from bundled, auto-refreshed datasets
-  (OurAirports airports + navaids), with proximity-based disambiguation of
-  colliding identifiers (e.g. `SLI` → Seal Beach, not the Colombian NDB)
+- Worldwide coordinate resolution from bundled, auto-refreshed datasets —
+  airports + navaids (OurAirports) plus multi-region enroute fixes (FAA NASR,
+  OpenAIP, open flightmaps), with proximity-based disambiguation of colliding
+  identifiers (e.g. `SLI` → Seal Beach, not the Colombian NDB)
 - Totals dashboard (time by year / aircraft, PIC, night, XC, instrument, landings)
 - FAA **and** Transport Canada currency tracking computed from your logbook
 - Responsive desktop + mobile UI
@@ -106,19 +107,36 @@ secrets. (`public/_redirects` handles SPA client-side routing on Pages.)
 ## Coordinate datasets & the fixes pipeline
 
 - **Airports & navaids:** OurAirports (CC0), fetched at build time and refreshed
-  at runtime. Identifier collisions (e.g. `SLI`) are disambiguated by proximity
-  to the flight's airports.
-- **Enroute fixes:** the FAA NASR subscription is a ~250 MB zip behind a WAF.
-  Rather than have every instance download it, `.github/workflows/update-fixes.yml`
-  runs `backend/scripts/build_fixes.py` on a schedule, extracts the fixes, and
-  publishes a slim ~3 MB `fixes.csv` as a **release asset**. Point your instance
-  at it:
+  at runtime — worldwide, keyed on ICAO identifiers. Collisions (e.g. `SLI`) are
+  disambiguated by proximity to the flight's airports, so the same logic works
+  for routes anywhere in the world.
+- **Enroute fixes (multi-region):** one `fixes.csv` is built centrally by
+  `.github/workflows/update-fixes.yml` (running `backend/scripts/build_fixes.py`)
+  and published as a **release asset**, so no instance ever pulls the large
+  upstream datasets. It merges three sources, each tagged in a `source` column:
+  - **FAA NASR** — US IFR enroute intersections (~70k; the subscription is a
+    ~250 MB zip behind a WAF, fetched once in CI).
+  - **OpenAIP** — worldwide VFR reporting points (per-country GeoJSON exports,
+    CC BY-NC-SA).
+  - **open flightmaps (OFMX)** — designated points for Europe and other covered
+    regions (AIRAC snapshots discovered dynamically).
+
+  The build validates the merge before publishing (`assert_bundle_ok`): if it is
+  empty or the FAA baseline is missing, the job fails and the previous release
+  stays `latest`, so there is always one working bundle. Point your instance at
+  it (and the static demo / PWA at the same URL via `VITE_FIXES_URL` at build
+  time):
 
   ```
   LOGBOOK_FIXES_URL=https://github.com/<owner>/<repo>/releases/latest/download/fixes.csv
   ```
 
   A bundled snapshot in the image is the offline / first-boot fallback.
+
+  > **Coverage:** IFR enroute *intersections* are complete for the US (FAA) and
+  > partial for Europe (open flightmaps); VFR reporting points are worldwide
+  > (OpenAIP); airports and navaids are global. Canada/Australia IFR enroute
+  > fixes have no open machine-readable source yet, so they are not included.
 
 ## Development
 
