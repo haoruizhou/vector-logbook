@@ -1,0 +1,47 @@
+name: Update FAA fixes dataset
+
+# Heavy lifting done once, centrally: download the ~250 MB FAA NASR subscription,
+# extract enroute fixes, and publish a slim ~3 MB fixes.csv as a release asset so
+# every self-hosted instance can fetch it cheaply (set LOGBOOK_FIXES_URL to
+# https://github.com/<owner>/<repo>/releases/latest/download/fixes.csv).
+
+on:
+  schedule:
+    - cron: "17 6 * * 1" # weekly Monday 06:17 UTC (FAA updates every 28 days)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-fixes
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Build slim fixes.csv from FAA NASR
+        working-directory: backend
+        run: |
+          uv sync --frozen
+          uv run python scripts/build_fixes.py
+          echo "rows=$(($(wc -l < datasets/bundled/fixes.csv) - 1))" >> "$GITHUB_ENV"
+          echo "edition=$(date -u +%Y%m%d)" >> "$GITHUB_ENV"
+
+      - name: Publish fixes.csv as the latest release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: fixes-${{ env.edition }}
+          name: FAA fixes ${{ env.edition }}
+          body: |
+            Slim enroute-fix dataset (${{ env.rows }} fixes) derived from the
+            current FAA NASR subscription. Fetched by VECTOR instances via
+            `LOGBOOK_FIXES_URL`.
+          make_latest: true
+          files: backend/datasets/bundled/fixes.csv

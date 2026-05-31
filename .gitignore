@@ -1,0 +1,29 @@
+# Working session artifacts (per global rules — not tracked)
+docs/superpowers/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node / frontend
+node_modules/
+dist/
+*.local
+
+# Runtime data & datasets
+data/
+*.db
+*.sqlite
+*.sqlite3
+backend/datasets/cache/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
