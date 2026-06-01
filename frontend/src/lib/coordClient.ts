@@ -10,12 +10,20 @@ const AIRPORTS_URL = "https://davidmegginson.github.io/ourairports-data/airports
 const NAVAIDS_URL = "https://davidmegginson.github.io/ourairports-data/navaids.csv";
 const FIXES_URL = import.meta.env.VITE_FIXES_URL as string | undefined;
 
+// Country normalization for compliance
+const COUNTRY_ALIASES: Record<string, string> = { TW: "CN", HK: "CN", MO: "CN" };
+export function normalizeCountry(country?: string | null): string | null {
+  if (!country) return null;
+  return COUNTRY_ALIASES[country.trim().toUpperCase()] ?? country;
+}
+
 interface Cand {
   ident: string;
   lat: number;
   lon: number;
   type: string;
   name?: string;
+  country?: string | null;
 }
 
 let indexPromise: Promise<Map<string, Cand[]>> | null = null;
@@ -38,14 +46,14 @@ async function buildIndex(): Promise<Map<string, Cand[]>> {
   try {
     const rows = await fetchRows(AIRPORTS_URL);
     const h = rows[0];
-    const [ii, la, lo, nm] = ["ident", "latitude_deg", "longitude_deg", "name"].map((c) => h.indexOf(c));
+    const [ii, la, lo, nm, co] = ["ident", "latitude_deg", "longitude_deg", "name", "iso_country"].map((c) => h.indexOf(c));
     for (let r = 1; r < rows.length; r++) {
       const row = rows[r];
       const id = (row[ii] ?? "").trim().toUpperCase();
       const lat = parseFloat(row[la]);
       const lon = parseFloat(row[lo]);
       if (id && Number.isFinite(lat) && Number.isFinite(lon))
-        addCand(map, { ident: id, lat, lon, type: "airport", name: row[nm] });
+        addCand(map, { ident: id, lat, lon, type: "airport", name: row[nm], country: co >= 0 ? row[co] : null });
     }
   } catch {
     /* offline / blocked — airports just won't resolve */
@@ -121,7 +129,7 @@ export async function resolveIdentsClient(idents: string[]): Promise<ResolveResu
     const best = cands
       .slice()
       .sort((a, b) => nearest(a) - nearest(b) || PRIORITY[a.type] - PRIORITY[b.type])[0];
-    res[id] = { ident: best.ident, lat: best.lat, lon: best.lon, type: best.type, name: best.name ?? null } as Waypoint;
+    res[id] = { ident: best.ident, lat: best.lat, lon: best.lon, type: best.type, name: best.name ?? null, country: normalizeCountry(best.country) } as Waypoint;
   }
   return res;
 }

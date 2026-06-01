@@ -86,6 +86,7 @@ export interface Waypoint {
   lon: number;
   type: string;
   name?: string | null;
+  country?: string | null;
 }
 
 export type ResolveResult = Record<string, Waypoint | null>;
@@ -103,4 +104,49 @@ export interface Stats {
   by_year: Record<string, number>;
   by_aircraft: Record<string, number>;
   [key: string]: number | Record<string, number>;
+}
+
+export interface JourneyAirport {
+  ident: string;
+  name: string | null;
+  country: string | null;
+  lat: number;
+  lon: number;
+  visits: number;
+  first_date: string | null;
+  last_date: string | null;
+}
+export interface JourneyLeg {
+  from_ident: string;
+  to_ident: string;
+  from_lat: number;
+  from_lon: number;
+  to_lat: number;
+  to_lon: number;
+  count: number;
+  last_date: string | null;
+}
+export interface JourneyMilestone {
+  key: string;
+  label: string;
+  date: string | null;
+}
+export interface JourneyIdentity {
+  callsign: string | null;
+  first_flight_year: string | null;
+  home_base: string | null;
+  total_hours: number;
+  airport_count: number;
+  country_count: number;
+  aircraft_count: number;
+  people_count: number;
+  night_hours: number;
+  longest_leg_nm: number;
+  furthest_from_home_nm: number;
+}
+export interface Journey {
+  airports: JourneyAirport[];
+  legs: JourneyLeg[];
+  identity: JourneyIdentity;
+  milestones: JourneyMilestone[];
 }

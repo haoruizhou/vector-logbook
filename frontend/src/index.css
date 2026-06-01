@@ -973,3 +973,293 @@ table.log tbody tr:hover td:first-child {
     font-size: 26px;
   }
 }
+
+/* ============================================================
+   Journey — flight passport + aviator ID
+   ============================================================ */
+.journey-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+/* ---------- hero map ---------- */
+.journey-map {
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+/* faint amber edge so the hero reads as the centerpiece */
+.journey-map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px var(--hair);
+}
+.journey-map .map-box {
+  height: 460px;
+  width: 100%;
+}
+.journey-map .map-placeholder {
+  height: 460px;
+}
+
+/* ---------- pilot ID band ---------- */
+.pilot-id {
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  border-left: 2px solid var(--accent);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.pilot-id-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.pilot-id-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.pilot-id-call {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  margin-top: 4px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.pilot-id-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin-top: 6px;
+}
+
+.id-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.id-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--bg-elev);
+}
+.id-badge-value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.id-badge-label {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.id-milestones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.id-milestone {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  background: var(--accent-dim);
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  padding: 4px 10px;
+  white-space: nowrap;
+  cursor: default;
+}
+
+/* ---------- strip bay ---------- */
+.strip-bay {
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+}
+.strip-bay-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.strip-bay-head h2 {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* segmented control — matches the .theme-toggle / .reg-switch pattern */
+.seg-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+}
+.seg-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.18s var(--ease);
+}
+.seg-toggle button:hover {
+  color: var(--ink);
+}
+.seg-toggle button.on {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.seg-toggle button.on:hover {
+  color: var(--accent-ink);
+}
+.seg-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  padding: 1px 6px;
+  border-radius: var(--r);
+  background: color-mix(in srgb, var(--ink-faint) 22%, transparent);
+  color: inherit;
+}
+.seg-toggle button.on .seg-count {
+  background: color-mix(in srgb, var(--accent-ink) 18%, transparent);
+}
+
+.strip-bay-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 10px;
+  padding: 16px 18px;
+  max-height: 520px;
+  overflow: auto;
+}
+
+/* ---------- ATC progress strip ---------- */
+.atc-strip {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: border-color 0.16s var(--ease), box-shadow 0.16s var(--ease), background 0.16s var(--ease);
+}
+.atc-strip:hover {
+  border-color: var(--hair);
+  background: var(--bg-hover);
+}
+.atc-strip.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), var(--shadow);
+}
+/* the tinted code compartment on the left */
+.atc-strip-code {
+  display: flex;
+  align-items: center;
+  flex: none;
+  min-width: 78px;
+  padding: 0 12px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-right: 1px solid var(--hair);
+}
+.atc-strip.active .atc-strip-code {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-right-color: var(--accent);
+}
+.atc-strip-fields {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+/* ruled vertical dividers between fields */
+.atc-strip-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+  padding: 7px 12px;
+  border-left: 1px solid var(--line);
+}
+.atc-strip-field:first-child {
+  border-left: none;
+}
+.atc-strip-flabel {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.atc-strip-fvalue {
+  font-size: 13px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .journey-map .map-box,
+  .journey-map .map-placeholder {
+    height: 320px;
+  }
+  .pilot-id-call {
+    font-size: 28px;
+  }
+  .strip-bay-list {
+    grid-template-columns: 1fr;
+  }
+}

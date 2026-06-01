@@ -2,9 +2,10 @@
 // Built with VITE_DEMO=1. No real personal data: fictional tail numbers and
 // crew redacted to roles. Visitors can also import their own ForeFlight CSV —
 // it is parsed entirely in the browser and held only in memory (see demoStore).
-import type { Aircraft, Flight, ResolveResult, Stats, Waypoint } from "./types";
-import { num } from "./lib/foreflight";
+import type { Aircraft, Flight, Journey, ResolveResult, Stats, Waypoint } from "./types";
+import { num, routeIdents } from "./lib/foreflight";
 import { resolveIdentsClient } from "./lib/coordClient";
+import { buildJourney } from "./lib/journey";
 
 export const DEMO = import.meta.env.VITE_DEMO === "1";
 
@@ -52,13 +53,13 @@ const sampleFlights: Flight[] = [
 // Coordinate fixture for the built-in sample idents (avoids a network fetch for
 // the default demo). Imported CSVs resolve against live data via coordClient.
 const SAMPLE_WP: Record<string, Waypoint> = {
-  KSBA: { ident: "KSBA", lat: 34.426201, lon: -119.840401, type: "airport", name: "Santa Barbara" },
-  KMYF: { ident: "KMYF", lat: 32.8157, lon: -117.139999, type: "airport", name: "Montgomery-Gibbs" },
-  KSBP: { ident: "KSBP", lat: 35.236801, lon: -120.642403, type: "airport", name: "San Luis Obispo" },
-  KIZA: { ident: "KIZA", lat: 34.606800, lon: -120.075798, type: "airport", name: "Santa Ynez" },
-  SLI: { ident: "SLI", lat: 33.78329, lon: -118.055, type: "vor", name: "Seal Beach" },
-  OCN: { ident: "OCN", lat: 33.2408, lon: -117.4178, type: "vor", name: "Oceanside" },
-  VPSMS: { ident: "VPSMS", lat: 32.84, lon: -117.251666, type: "fix", name: "VPSMS" },
+  KSBA: { ident: "KSBA", lat: 34.426201, lon: -119.840401, type: "airport", name: "Santa Barbara", country: "US" },
+  KMYF: { ident: "KMYF", lat: 32.8157, lon: -117.139999, type: "airport", name: "Montgomery-Gibbs", country: "US" },
+  KSBP: { ident: "KSBP", lat: 35.236801, lon: -120.642403, type: "airport", name: "San Luis Obispo", country: "US" },
+  KIZA: { ident: "KIZA", lat: 34.606800, lon: -120.075798, type: "airport", name: "Santa Ynez", country: "US" },
+  SLI: { ident: "SLI", lat: 33.78329, lon: -118.055, type: "vor", name: "Seal Beach", country: "US" },
+  OCN: { ident: "OCN", lat: 33.2408, lon: -117.4178, type: "vor", name: "Oceanside", country: "US" },
+  VPSMS: { ident: "VPSMS", lat: 32.84, lon: -117.251666, type: "fix", name: "VPSMS", country: "US" },
 };
 
 // Mutable in-memory working set. There is NO persistence: a page refresh
@@ -156,5 +157,16 @@ export const demoApi = {
   },
   refreshDatasets: async () => ({}),
   stats: async () => computeStats(state.flights),
+  // Pre-resolve all idents globally then pass a sync lookup to buildJourney.
+  // (Live backend resolves per-flight for strict disambiguation; here the
+  // client resolver already disambiguates within the full imported set.)
+  journey: async (): Promise<Journey> => {
+    const all = new Set<string>();
+    for (const f of state.flights) for (const i of routeIdents(f)) all.add(i);
+    const resolved = await demoApi.resolve([...all]);
+    return buildJourney(state.flights, (idents) =>
+      Object.fromEntries(idents.map((i) => [i, resolved[i.trim().toUpperCase()] ?? null])),
+    );
+  },
   importCsv: async () => undefined as never,
 };

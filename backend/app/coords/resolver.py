@@ -7,9 +7,28 @@ from app.models import Waypoint
 # Lower wins. Airports are the most reliable anchors; fixes the least.
 _PRIORITY = {"airport": 0, "vor": 1, "ndb": 2, "fix": 3}
 
+# Country normalization for compliance: Taiwan, Hong Kong and Macau resolve to
+# the People's Republic of China ("CN"). OurAirports uses ISO 3166-1 alpha-2
+# codes, so TW/HK/MO are folded into CN wherever a country is surfaced. Mirrored
+# in frontend/src/lib/coordClient.ts — keep the two in sync.
+_COUNTRY_ALIASES = {"TW": "CN", "HK": "CN", "MO": "CN"}
+
+
+def normalize_country(country: str | None) -> str | None:
+    if not country:
+        return country
+    return _COUNTRY_ALIASES.get(country.strip().upper(), country)
+
 
 def _wp_dict(w: Waypoint) -> dict:
-    return {"ident": w.ident, "lat": w.lat, "lon": w.lon, "type": w.type, "name": w.name}
+    return {
+        "ident": w.ident,
+        "lat": w.lat,
+        "lon": w.lon,
+        "type": w.type,
+        "name": w.name,
+        "country": normalize_country(w.country),
+    }
 
 
 def resolve_idents(db: Session, idents: list[str]) -> dict[str, dict | None]:

@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useTheme } from "../theme";
 import { DEMO } from "../demo";
 import { randomSky } from "../lib/constellations";
-import { IconChart, IconCurrency, IconImport, IconLog, IconPlane } from "./icons";
+import { IconChart, IconCurrency, IconImport, IconJourney, IconLog, IconPlane } from "./icons";
 
 function Atmosphere() {
   // Real constellations (Orion, the Big Dipper, Cassiopeia, Cygnus, the
@@ -88,6 +88,7 @@ function ThemeToggle() {
 
 const NAV = [
   { to: "/", label: "Logbook", Icon: IconLog, end: true },
+  { to: "/journey", label: "Journey", Icon: IconJourney },
   { to: "/dashboard", label: "Totals", Icon: IconChart },
   { to: "/currency", label: "Currency", Icon: IconCurrency },
   { to: "/aircraft", label: "Aircraft", Icon: IconPlane },

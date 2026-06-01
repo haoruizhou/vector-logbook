@@ -76,3 +76,32 @@ def test_resolver_picks_region_matching_airports(db_session):
     db_session.commit()
     res = resolve_idents(db_session, ["LOWW", "ABETI", "EDDM"])
     assert res["ABETI"]["lat"] == 47.9  # European candidate, not US
+
+
+def test_resolver_surfaces_country(db_session):
+    from app.coords.resolver import resolve_idents
+    from app.models import Waypoint
+
+    db_session.add(Waypoint(ident="KSBA", type="airport", lat=34.4, lon=-119.8, country="US", source="t"))
+    db_session.commit()
+    res = resolve_idents(db_session, ["KSBA"])
+    assert res["KSBA"]["country"] == "US"
+
+
+def test_resolver_folds_tw_hk_mo_into_cn(db_session):
+    """Compliance: Taiwan, Hong Kong and Macau resolve to the PRC ("CN")."""
+    from app.coords.resolver import normalize_country, resolve_idents
+    from app.models import Waypoint
+
+    assert normalize_country("TW") == "CN"
+    assert normalize_country("HK") == "CN"
+    assert normalize_country("MO") == "CN"
+    assert normalize_country("US") == "US"
+    assert normalize_country(None) is None
+
+    db_session.add(Waypoint(ident="RCTP", type="airport", lat=25.077, lon=121.233, country="TW", source="t"))
+    db_session.add(Waypoint(ident="VHHH", type="airport", lat=22.308, lon=113.915, country="HK", source="t"))
+    db_session.commit()
+    res = resolve_idents(db_session, ["RCTP", "VHHH"])
+    assert res["RCTP"]["country"] == "CN"
+    assert res["VHHH"]["country"] == "CN"

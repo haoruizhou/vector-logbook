@@ -77,3 +77,9 @@ export const IconEdit = (p: SVGProps<SVGSVGElement>) => (
     <path d="M4 20h4L19 9l-4-4L4 16z" />
   </svg>
 );
+export const IconJourney = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" />
+  </svg>
+);

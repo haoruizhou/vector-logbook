@@ -26,7 +26,7 @@ def create_app() -> FastAPI:
     app = FastAPI(title="Flight Logbook", lifespan=lifespan)
     init_db()
 
-    from app.routers import aircraft, flights, io as io_router, resolve, stats
+    from app.routers import aircraft, flights, io as io_router, journey, resolve, stats
 
     for r in (
         flights.router,
@@ -34,6 +34,7 @@ def create_app() -> FastAPI:
         io_router.router,
         resolve.router,
         stats.router,
+        journey.router,
     ):
         app.include_router(r)
 

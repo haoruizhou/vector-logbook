@@ -1,4 +1,4 @@
-import type { Aircraft, Flight, ResolveResult, Stats } from "../types";
+import type { Aircraft, Flight, Journey, ResolveResult, Stats } from "../types";
 import { DEMO, demoApi } from "../demo";
 
 async function j<T>(p: Promise<Response>): Promise<T> {
@@ -41,6 +41,7 @@ const liveApi = {
   refreshDatasets: () => j<Record<string, number>>(fetch("/api/datasets/refresh", { method: "POST" })),
 
   stats: () => j<Stats>(fetch("/api/stats")),
+  journey: () => j<Journey>(fetch("/api/journey")),
 
   importCsv: (file: File) => {
     const fd = new FormData();
