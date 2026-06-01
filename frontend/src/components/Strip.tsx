@@ -1,4 +1,9 @@
-export interface StripField { label: string; value: string }
+export interface StripField {
+  label: string;
+  value: string;
+  /** "wide" grows and wraps (long names); "tight" shrinks to its content (codes, counts). */
+  size?: "wide" | "tight";
+}
 
 export default function Strip({
   code, fields, active, onHover, onLeave, onClick,
@@ -23,9 +28,9 @@ export default function Strip({
       <span className="atc-strip-code">{code}</span>
       <span className="atc-strip-fields">
         {fields.map((f) => (
-          <span key={f.label} className="atc-strip-field">
+          <span key={f.label} className={`atc-strip-field${f.size ? ` ${f.size}` : ""}`}>
             <span className="atc-strip-flabel">{f.label}</span>
-            <span className="atc-strip-fvalue">{f.value}</span>
+            <span className="atc-strip-fvalue" title={f.value}>{f.value}</span>
           </span>
         ))}
       </span>

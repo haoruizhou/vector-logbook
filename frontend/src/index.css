@@ -1235,6 +1235,15 @@ table.log tbody tr:hover td:first-child {
 .atc-strip-field:first-child {
   border-left: none;
 }
+/* NAME-style fields grow and wrap (up to 2 lines) instead of truncating hard. */
+.atc-strip-field.wide {
+  flex: 2.6;
+}
+/* CTRY / VISITS / FLOWN are 1-3 chars — size them to content so they don't
+   starve the name and date compartments. */
+.atc-strip-field.tight {
+  flex: 0 0 auto;
+}
 .atc-strip-flabel {
   font-family: var(--font-display);
   font-size: 9px;
@@ -1249,6 +1258,15 @@ table.log tbody tr:hover td:first-child {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+/* Long names wrap to two lines (then ellipsize) rather than cutting after 3
+   characters; the full value is always available via the title tooltip. */
+.atc-strip-field.wide .atc-strip-fvalue {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 @media (max-width: 860px) {

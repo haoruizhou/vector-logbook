@@ -41,9 +41,9 @@ export default function StripBay({
                 onLeave={() => onSelect(null)}
                 onClick={() => onSelect(a.ident)}
                 fields={[
-                  { label: "NAME", value: a.name ?? "—" },
-                  { label: "CTRY", value: a.country ?? "—" },
-                  { label: "VISITS", value: String(a.visits) },
+                  { label: "NAME", value: a.name ?? "—", size: "wide" },
+                  { label: "CTRY", value: a.country ?? "—", size: "tight" },
+                  { label: "VISITS", value: String(a.visits), size: "tight" },
                   { label: "LAST", value: a.last_date ?? "—" },
                 ]}
               />
@@ -57,7 +57,7 @@ export default function StripBay({
                 onLeave={() => onSelect(null)}
                 onClick={() => onSelect(l.from_ident)}
                 fields={[
-                  { label: "FLOWN", value: `${l.count}×` },
+                  { label: "FLOWN", value: `${l.count}×`, size: "tight" },
                   { label: "LAST", value: l.last_date ?? "—" },
                 ]}
               />
