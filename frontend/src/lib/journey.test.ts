@@ -64,7 +64,9 @@ describe("buildJourney", () => {
     );
     const keys = Object.fromEntries(j.milestones.map((m) => [m.key, m]));
     expect(keys.first_flight.date).toBe("2021-06-01");
+    expect(keys.first_flight.detail).toBe("KSBA → KMYF");
     expect(keys.first_international.date).toBe("2023-08-01");
+    expect(keys.first_international.detail).toBe("KSBA → CYYJ");
   });
 
   it("counts a round-trip (from_ === to) as a single visit", () => {

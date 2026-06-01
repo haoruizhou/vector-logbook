@@ -129,6 +129,7 @@ export interface JourneyLeg {
 export interface JourneyMilestone {
   key: string;
   label: string;
+  detail: string | null;
   date: string | null;
 }
 export interface JourneyIdentity {

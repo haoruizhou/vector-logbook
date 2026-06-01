@@ -7,6 +7,13 @@ const TIERS = [10, 25, 50, 100];
 
 const personName = (raw?: string | null) => (raw ? String(raw).split(";")[0].trim() : "");
 
+const routeStr = (f: Flight): string | null => {
+  const a = (f.from_ ?? "").trim();
+  const b = (f.to ?? "").trim();
+  if (a && b) return `${a} → ${b}`;
+  return a || b || null;
+};
+
 export function buildJourney(flights: Flight[], resolve: ResolveFn): Journey {
   const airports = new Map<string, JourneyAirport>();
   const legs = new Map<string, JourneyLeg>();
@@ -16,6 +23,7 @@ export function buildJourney(flights: Flight[], resolve: ResolveFn): Journey {
   let totalHours = 0;
   let nightHours = 0;
   let firstDate: string | null = null;
+  let firstFlightRoute: string | null = null;
   let longestLeg = 0;
 
   for (const f of flights) {
@@ -28,7 +36,10 @@ export function buildJourney(flights: Flight[], resolve: ResolveFn): Journey {
       if (nm) people.add(nm);
     }
     const d = f.date ?? null;
-    if (d && (firstDate === null || d < firstDate)) firstDate = d;
+    if (d && (firstDate === null || d < firstDate)) {
+      firstDate = d;
+      firstFlightRoute = routeStr(f);
+    }
   }
 
   const ordered = [...flights].sort((a, b) => (a.date ?? "").localeCompare(b.date ?? ""));
@@ -36,6 +47,7 @@ export function buildJourney(flights: Flight[], resolve: ResolveFn): Journey {
   const seenCountries = new Set<string>();
   const tierDates = new Map<number, string | null>();
   let firstIntlDate: string | null = null;
+  let firstIntlRoute: string | null = null;
 
   for (const f of ordered) {
     const idents = routeIdents(f);
@@ -77,7 +89,10 @@ export function buildJourney(flights: Flight[], resolve: ResolveFn): Journey {
     }
 
     for (const p of [src, dst]) if (p?.country) seenCountries.add(p.country);
-    if (firstIntlDate === null && seenCountries.size >= 2) firstIntlDate = d;
+    if (firstIntlDate === null && seenCountries.size >= 2) {
+      firstIntlDate = d;
+      firstIntlRoute = routeStr(f);
+    }
     for (const p of [src, dst]) if (p?.type === "airport") seenAirports.add(p.ident);
     for (const tier of TIERS) if (!tierDates.has(tier) && seenAirports.size >= tier) tierDates.set(tier, d);
   }
@@ -106,10 +121,22 @@ export function buildJourney(flights: Flight[], resolve: ResolveFn): Journey {
   );
 
   const milestones: JourneyMilestone[] = [];
-  if (flights.length) milestones.push({ key: "first_flight", label: "First flight", date: firstDate });
-  if (countries.size >= 2) milestones.push({ key: "first_international", label: "First international", date: firstIntlDate });
-  for (const tier of TIERS) if (airports.size >= tier) milestones.push({ key: `airports_${tier}`, label: `${tier} airports`, date: tierDates.get(tier) ?? null });
-  if (longestLegObj) milestones.push({ key: "longest_journey", label: "Longest journey", date: longestLegObj.last_date });
+  if (flights.length)
+    milestones.push({ key: "first_flight", label: "First flight", detail: firstFlightRoute, date: firstDate });
+  if (countries.size >= 2)
+    milestones.push({ key: "first_international", label: "First international", detail: firstIntlRoute, date: firstIntlDate });
+  for (const tier of TIERS)
+    if (airports.size >= tier)
+      milestones.push({ key: `airports_${tier}`, label: `${tier} airports`, detail: null, date: tierDates.get(tier) ?? null });
+  if (longestLegObj) {
+    const dist = Math.round(gcDistanceNm(longestLegObj.from_lat, longestLegObj.from_lon, longestLegObj.to_lat, longestLegObj.to_lon));
+    milestones.push({
+      key: "longest_journey",
+      label: "Longest journey",
+      detail: `${longestLegObj.from_ident} → ${longestLegObj.to_ident} · ${dist} nm`,
+      date: longestLegObj.last_date,
+    });
+  }
 
   const r1 = (n: number) => Math.round(n * 10) / 10;
   return {

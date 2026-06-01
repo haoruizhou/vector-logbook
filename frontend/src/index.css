@@ -1086,16 +1086,26 @@ table.log tbody tr:hover td:first-child {
   gap: 8px;
 }
 .id-milestone {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   font-family: var(--font-mono);
-  font-size: 11px;
   letter-spacing: 0.04em;
   color: var(--ink-dim);
   background: var(--accent-dim);
   border: 1px solid var(--hair);
   border-radius: var(--r);
-  padding: 4px 10px;
+  padding: 5px 10px;
   white-space: nowrap;
   cursor: default;
+}
+.id-milestone-label {
+  font-size: 11px;
+}
+.id-milestone-detail {
+  font-size: 10px;
+  color: var(--ink-faint, var(--ink-dim));
+  opacity: 0.75;
 }
 
 /* ---------- strip bay ---------- */

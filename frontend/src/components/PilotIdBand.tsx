@@ -37,11 +37,15 @@ export default function PilotIdBand({ journey }: { journey: Journey }) {
 
       {journey.milestones.length > 0 && (
         <div className="id-milestones">
-          {journey.milestones.map((m) => (
-            <span key={m.key} className="id-milestone" title={m.date ?? ""}>
-              {m.label}
-            </span>
-          ))}
+          {journey.milestones.map((m) => {
+            const sub = [m.detail, m.date].filter(Boolean).join(" · ");
+            return (
+              <span key={m.key} className="id-milestone">
+                <span className="id-milestone-label">{m.label}</span>
+                {sub && <span className="id-milestone-detail">{sub}</span>}
+              </span>
+            );
+          })}
         </div>
       )}
     </section>
