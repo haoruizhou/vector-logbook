@@ -430,6 +430,27 @@ textarea:focus {
 input::placeholder {
   color: var(--ink-faint);
 }
+input.invalid {
+  border-color: var(--danger);
+}
+input.invalid:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 1px var(--danger);
+}
+.field-err {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--danger);
+}
+.form-banner.error {
+  margin-bottom: 18px;
+  padding: 10px 13px;
+  font-size: 13px;
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  border: 1px solid var(--danger);
+  border-radius: var(--r);
+}
 
 /* ============================================================
    Logbook table
@@ -1078,6 +1099,44 @@ table.log tbody tr:hover td:first-child {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
+}
+
+/* ---------- field hint ---------- */
+.field-hint {
+  position: relative;
+  border-bottom: 1px dotted var(--ink-dim);
+  cursor: help;
+  outline: none;
+}
+.field-hint-pop {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  z-index: 30;
+  width: max-content;
+  max-width: 230px;
+  padding: 7px 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: normal;
+  color: var(--ink);
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease;
+  pointer-events: none;
+}
+.field-hint:hover .field-hint-pop,
+.field-hint:focus .field-hint-pop,
+.field-hint:focus-within .field-hint-pop {
+  opacity: 1;
+  visibility: visible;
 }
 
 .id-milestones {

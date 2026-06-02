@@ -4,9 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../api/client";
 import type { Flight } from "../types";
 import PageHeader from "../components/PageHeader";
+import FieldHint from "../components/FieldHint";
+import { FIELD_HINTS } from "../lib/fieldHints";
+import { validateField } from "../lib/fieldValidation";
 import { IconBack } from "../components/icons";
 
-type FieldType = "text" | "date" | "num" | "bool";
+type FieldType = "text" | "date" | "num" | "bool" | "time";
 interface FieldDef {
   key: keyof Flight;
   label: string;
@@ -31,10 +34,10 @@ const GROUPS: FormGroup[] = [
   {
     title: "Times",
     fields: [
-      { key: "time_out", label: "Out" },
-      { key: "time_off", label: "Off" },
-      { key: "time_on", label: "On" },
-      { key: "time_in", label: "In" },
+      { key: "time_out", label: "Out", type: "time" },
+      { key: "time_off", label: "Off", type: "time" },
+      { key: "time_on", label: "On", type: "time" },
+      { key: "time_in", label: "In", type: "time" },
       { key: "total_time", label: "Total", type: "num" },
       { key: "pic", label: "PIC", type: "num" },
       { key: "sic", label: "SIC", type: "num" },
@@ -104,6 +107,7 @@ export default function FlightFormPage() {
   const qc = useQueryClient();
 
   const [form, setForm] = useState<Partial<Flight>>({});
+  const [triedSave, setTriedSave] = useState(false);
 
   const aircraftQ = useQuery({ queryKey: ["aircraft"], queryFn: api.listAircraft });
   const flightQ = useQuery({
@@ -130,8 +134,16 @@ export default function FlightFormPage() {
     setForm((f) => ({ ...f, [k]: v }));
   }
 
+  const invalid = GROUPS.flatMap((g) =>
+    g.fields.filter((fld) => validateField(fld.type, String(form[fld.key] ?? ""))).map((fld) => fld.label),
+  );
+
   function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (invalid.length) {
+      setTriedSave(true);
+      return;
+    }
     save.mutate(form);
   }
 
@@ -151,6 +163,11 @@ export default function FlightFormPage() {
       </PageHeader>
 
       <form className="page fade-in" onSubmit={submit}>
+        {triedSave && invalid.length > 0 && (
+          <div className="form-banner error" role="alert">
+            Fix {invalid.length} field{invalid.length > 1 ? "s" : ""} before saving: {invalid.join(", ")}
+          </div>
+        )}
         <div className="field" style={{ maxWidth: 280, marginBottom: 22 }}>
           <label>Aircraft</label>
           <select value={form.aircraft_id ?? ""} onChange={(e) => set("aircraft_id", e.target.value)}>
@@ -183,16 +200,21 @@ export default function FlightFormPage() {
                     </label>
                   );
                 }
+                const err = validateField(fld.type, val);
                 return (
                   <div className="field" key={String(fld.key)}>
-                    <label>{fld.label}</label>
+                    <label>
+                      <FieldHint label={fld.label} hint={FIELD_HINTS[fld.key as string]} />
+                    </label>
                     <input
                       type={fld.type === "date" ? "date" : "text"}
                       inputMode={fld.type === "num" ? "decimal" : undefined}
-                      placeholder={fld.placeholder}
+                      className={err ? "invalid" : undefined}
+                      placeholder={fld.type === "time" ? "hh:mm" : fld.placeholder}
                       value={val}
                       onChange={(e) => set(fld.key, e.target.value)}
                     />
+                    {err && <div className="field-err">{err}</div>}
                   </div>
                 );
               })}

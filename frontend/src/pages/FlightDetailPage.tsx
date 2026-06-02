@@ -5,6 +5,8 @@ import { cleanText, num, parsePerson } from "../lib/foreflight";
 import type { Flight } from "../types";
 import PageHeader from "../components/PageHeader";
 import FlightMap from "../components/FlightMap";
+import FieldHint from "../components/FieldHint";
+import { FIELD_HINTS } from "../lib/fieldHints";
 import { IconBack, IconEdit, IconTrash } from "../components/icons";
 
 type Row = [label: string, field: keyof Flight, accent?: boolean];
@@ -19,7 +21,9 @@ function KV({ flight, rows }: { flight: Flight; rows: Row[] }) {
     <div className="kv">
       {shown.map(([label, f, accent]) => (
         <div key={String(f)}>
-          <div className="k">{label}</div>
+          <div className="k">
+            <FieldHint label={label} hint={FIELD_HINTS[f as string]} />
+          </div>
           <div className={`v${accent ? " accent" : ""}`}>{String(flight[f])}</div>
         </div>
       ))}
