@@ -1,6 +1,7 @@
 # VECTOR — Self-Hosted Flight Logbook
+<img width="2880" height="1800" alt="VectorLanding" src="https://github.com/user-attachments/assets/8eda5d5c-c407-46c7-b5c8-3126f0744170" />
 
-A private, self-hosted flight logbook that **replaces ForeFlight** while staying
+A private, self-hosted flight logbook that **replaces ForeFlight Logbook** while staying
 fully compatible with its CSV format. Import your existing ForeFlight export,
 add/edit/delete flights, and export back to ForeFlight any time — no lock-in.
 Click any flight to see its route on a map: a great-circle line for direct
